@@ -1,0 +1,60 @@
+@import '../../variables.css';
+
+.modalDelete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    width: 353px;
+    height: 134px;
+    background-color: var(--color-background-modal);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 36px;
+}
+
+.confirmButton, .cancelButton {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.52px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 88px;
+    height: 27px;
+    border: none;
+}
+
+.confirmButton {
+    background: var(--color-confirm-button);
+    color: var(--color-confirm-text);
+}
+
+.cancelButton {
+    background: var(--color-accent);
+    color: var(--color-background-modal);
+}
+
+.modalText {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    margin: 36px 36px 24px 36px;
+}

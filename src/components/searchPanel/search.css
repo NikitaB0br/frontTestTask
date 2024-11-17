@@ -1,0 +1,61 @@
+.searchContainer {
+    height: 102px;
+    border-radius: 7px;
+    background-color: var(--color-background-modal);
+    display: grid;
+    box-shadow: 0 18px 15px 0 #94949426;
+}
+
+.searchPanel {
+    padding: 12px 44px 24px 16px;
+    width: 100%;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 9px 0 9px 32px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-input-background);
+}
+
+.searchInput::placeholder {
+    font-weight: 500;
+    line-height: 16px;
+    font-size: 12px;
+    color: var(--color-names-tablet);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+.clearButton {
+    display: flex;
+    align-items: center;
+    width: 123px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0 0 16px 16px;
+    border: none;
+    background-color: var(--color-background-modal);
+    cursor: pointer;
+    color: var(--color-clear-button);
+}
+
+.clearButtonIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}

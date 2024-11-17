@@ -1,0 +1,12 @@
+:root {
+    --color-background: #F7F7F7;
+    --color-accent: #0CB4F1;
+    --color-names-tablet: #9EAAB4;
+    --color-font: #ACACAC;
+    --color-main-text: #333333;
+    --color-background-modal: #FFFFFF;
+    --color-confirm-button: #E0E0E0;
+    --color-confirm-text: #828282;
+    --color-input-background: #ECEFF0;
+    --color-clear-button: 
+}

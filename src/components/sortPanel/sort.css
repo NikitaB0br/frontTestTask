@@ -1,0 +1,41 @@
+.sortContainer {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #9EAAB4;
+    margin: 72px 0 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.sortButton {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    border: none;
+    background-color: var(--color-background);
+    color: var(--color-font);
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.sortButton::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px dashed var(--color-names-tablet);
+    transform: scaleX(1);
+    transform-origin: bottom right;
+}
+
+.sortButton.active {
+    color: var(--color-main-text);
+}
+
+.sortButton.active::after {
+    border-bottom-color: var(--color-main-text);
+}
