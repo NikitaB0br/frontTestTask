@@ -44,11 +44,14 @@ function App() {
     }, []);
 
     const confirmDelete = useCallback(() => {
+        // Удаляем пользователя
         setUsers((prevUsers) => {
             const updatedUsers = prevUsers.filter((user) => user.id !== userToDelete);
+
+            // Если удаленный пользователь был с последней страницы, проверяем пагинацию
             const totalPages = Math.ceil(updatedUsers.length / usersPerPage);
             if (currentPage > totalPages) {
-                setCurrentPage(totalPages);
+                setCurrentPage(totalPages);  // Переходим на последнюю страницу
             }
 
             return updatedUsers;

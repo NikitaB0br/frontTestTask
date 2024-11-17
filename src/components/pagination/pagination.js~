@@ -1,11 +1,11 @@
 import React from 'react';
 import './pagination.css';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => (
+const Pagination = ({currentPage, totalPages, onPageChange}) => (
     <div className="pagination">
         <button
             onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1 || totalPages === 0}>
+            disabled={currentPage === 1}>
             Предыдущая
         </button>
         {[...Array(totalPages)].map((_, index) => (
@@ -18,7 +18,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => (
         ))}
         <button
             onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages || totalPages === 0}>
+            disabled={currentPage === totalPages}>
             Следующая
         </button>
     </div>
