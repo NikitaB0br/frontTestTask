@@ -1,12 +1,12 @@
-"use strict";
-
-import React, {useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import UserList from "./components/userList/userList";
 import Search from "./components/searchPanel/search";
 import Sort from "./components/sortPanel/sort";
 import Pagination from "./components/pagination/pagination";
 import Modal from "./components/modalDelete/modalDelete";
-import useUsers from "./components/useUsers/useUsers";
+import useFilteredUsers from "./hooks/useFilteredUsers";
+import useSortedUsers from "./hooks/useSortedUsers";
+import usePagination from "./hooks/usePagination";
 import "./App.css";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     const [activeButton, setActiveButton] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
-    const [sortDirection, setSortDirection] = useState({date: null, rating: null});
+    const [sortDirection, setSortDirection] = useState({ date: null, rating: null });
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 5;
@@ -61,24 +61,17 @@ function App() {
     };
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value.toLowerCase());
+
     const handleClearFilter = () => {
         setSearchQuery("");
         setActiveButton(null);
-        setSortDirection({date: null, rating: null});
+        setSortDirection({ date: null, rating: null });
     };
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const {currentUsers, totalPages} = useUsers(
-        users,
-        searchQuery,
-        activeButton,
-        sortDirection,
-        currentPage,
-        usersPerPage
-    );
-
-    const isFilterActive = !!searchQuery || !!activeButton;
+    const isFilterActive = searchQuery || activeButton;
+    const filteredUsers = useFilteredUsers(users, searchQuery, activeButton);
+    const sortedFilteredUsers = useSortedUsers(filteredUsers, activeButton, sortDirection);
+    const { currentUsers, totalPages } = usePagination(sortedFilteredUsers, currentPage, usersPerPage);
 
     return (
         <div className="app">
@@ -91,16 +84,16 @@ function App() {
                 isFilterActive={isFilterActive}
                 onClearFilter={handleClearFilter}
             />
-            <Sort activeButton={activeButton} onSortClick={handleButtonClick}/>
+            <Sort activeButton={activeButton} onSortClick={handleButtonClick} />
             {isLoading ? (
                 <p>Загрузка...</p>
             ) : error ? (
                 <p className="errorMessage">{error}</p>
             ) : (
-                <UserList users={currentUsers} onDelete={handleDelete}/>
+                <UserList users={currentUsers} onDelete={handleDelete} />
             )}
-            {isModalOpen && <Modal onConfirm={confirmDelete} onCancel={cancelDelete}/>}
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={paginate}/>
+            {isModalOpen && <Modal onConfirm={confirmDelete} onCancel={cancelDelete} />}
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
         </div>
     );
 }

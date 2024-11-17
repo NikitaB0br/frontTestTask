@@ -3,7 +3,7 @@ import './search.css';
 import searchIcon from '../../assets/icons/source_icons_search 1.svg';
 import cleanIcon from '../../assets/icons/clean.svg';
 
-const Search = ({ searchQuery, onSearchChange, isFilterActive, onClearFilter }) => (
+const Search = ({searchQuery, onSearchChange, isFilterActive, onClearFilter}) => (
     <div className="searchContainer">
         <div className="searchPanel">
             <div className="inputWrapper">
