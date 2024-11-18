@@ -69,7 +69,10 @@ function App() {
         }));
     };
 
-    const handleSearchChange = (e) => setSearchQuery(e.target.value.toLowerCase());
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value.toLowerCase());
+        setCurrentPage(1);
+    };
 
     const handleClearFilter = () => {
         setSearchQuery("");
@@ -81,6 +84,10 @@ function App() {
     const filteredUsers = useFilteredUsers(users, searchQuery, activeButton);
     const sortedFilteredUsers = useSortedUsers(filteredUsers, activeButton, sortDirection);
     const { currentUsers, totalPages } = usePagination(sortedFilteredUsers, currentPage, usersPerPage);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, filteredUsers]);
 
     return (
         <div className="app">
